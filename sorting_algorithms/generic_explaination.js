@@ -38,6 +38,41 @@ function QuickSort(arr, low, high){
 }
 
 
+//||||||||||||||||||||||||||||||||Merge SORT||||||||||||||||||||||||||||||||||||||
+let merge = (left, right)=>{
+    let resultArray  = [],
+        leftIndex  = 0, 
+        rightIndex = 0;
+    
+        while (leftIndex < left.length && rightIndex < right.length){
+            if(left[leftIndex] < right[rightIndex]){
+                resultArray.push(left[leftIndex]);
+                leftIndex++;
+            }
+            else{
+                resultArray.push(right[rightIndex]);
+                rightIndex++; 
+            }
+        }
+        return resultArray
+            .concat(left.slice(leftIndex))
+            .concat(right.slice(rightIndex));
+}
+
+function mergeSort(array){
+    if(array.length === 1) return array;
+
+    const middle = Math.floor(array.length/2);
+    const left = array.slice(0, middle);
+    const right = array.slice(middle);
+
+    //recursive retrn
+    return merge(
+        mergeSort(left),
+        mergeSort(right)
+    );
+}
+
 
 function randomlyFill(number){
     for (let i=0; i<=number; i++){
@@ -74,7 +109,13 @@ randomlyFill(3);
 // console.log(bubble_sort(array_test[0]));
 // tets(3, bubble_sort);
 
-console.log("---- QuickSort: ---- \n");
+// console.log("---- QuickSort: ---- \n");
+// let a  =array_test[0]
+// QuickSort(a, 0, a.length-1)
+// console.log("Array 1:", a);
+
+
+console.log("---- Merge Sort: ---- \n");
+
 let a  =array_test[0]
-QuickSort(a, 0, a.length-1)
-console.log("Array 1:", a);
+console.log("Array 2:", mergeSort(a));
