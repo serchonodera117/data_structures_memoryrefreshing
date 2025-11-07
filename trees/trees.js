@@ -21,7 +21,9 @@ node1.right= node3
 
 node2.left = node5
 
-function inorder(node){
+
+// in order shearch
+function inorder(node){       
     if(node === null) return
 
     inorder(node.left)
@@ -29,4 +31,73 @@ function inorder(node){
     inorder(node.right)
 }
 
-inorder(root)
+// console.log("inorder")
+// inorder(root)
+
+function preorder(node){
+    if(node === null) return
+
+    console.log(node.value)
+    preorder(node.left)
+    preorder(node.right)
+ }
+
+//  console.log("preorder")
+//  preorder(root)
+
+ 
+function postOrder(node){
+    if(node === null)return;
+    
+    inorder(node.left)
+    inorder(node.right)
+    console.log(node.value)
+}
+
+
+// console.log("postorder")
+// preorder(root)
+
+function insert(node, value){ 
+    if(node === null){
+        return null
+    }
+    if(value> node.value){
+        if(node.right==null){
+            const newNode = new Node(value);
+            node.right = newNode
+        }else{
+            insert(node.right,value)
+        }
+    }
+    else if (value < node.value){
+        if(node.left === null){
+            const newNode = new Node(value)
+            node.left  =newNode
+        }
+        else{
+            insert(node.left, value)
+        }
+    }
+    else{
+        insert(node.left, value)
+    }
+}
+
+insert(root,1000)
+// console.log(root)
+
+function find (node, value){
+    if (node === null) return null
+
+    if(node.value === value){return node}
+
+    const left = find(node.left, value);
+    const right = find(node.right, value);
+
+    return left || right;
+}
+
+let val = find(root, 6)
+console.log(val)
+// if(val) console.log(val.value , val.left, val.right);
