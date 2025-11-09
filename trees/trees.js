@@ -1,17 +1,19 @@
-function Node(value){
-    this.value =  value;
+class Tree{
+    constructor(value){
+        this.value =  value;
+        this.left = null;
+        this.right = null;
+    }
 
-    this.left = null;
-    this.right = null;
 }
 
-const root = new Node(6); 
+const root = new Tree(); 
 
-const node1 = new Node(2); 
-const node2 = new Node(4); 
-const node3 = new Node(6); 
-const node4 = new Node(3); 
-const node5 = new Node(12); 
+const node1 = new Tree(2); 
+const node2 = new Tree(4); 
+const node3 = new Tree(6); 
+const node4 = new Tree(3); 
+const node5 = new Tree(12); 
 
 root.left = node1;
 root.right = node2
@@ -64,7 +66,7 @@ function insert(node, value){
     }
     if(value> node.value){
         if(node.right==null){
-            const newNode = new Node(value);
+            const newNode = new Tree(value);
             node.right = newNode
         }else{
             insert(node.right,value)
@@ -72,7 +74,7 @@ function insert(node, value){
     }
     else if (value < node.value){
         if(node.left === null){
-            const newNode = new Node(value)
+            const newNode = new Tree(value)
             node.left  =newNode
         }
         else{
