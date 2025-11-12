@@ -7,7 +7,7 @@ class Tree{
 
 }
 
-const root = new Tree(); 
+const root = new Tree(1); 
 
 const node1 = new Tree(2); 
 const node2 = new Tree(4); 
@@ -87,19 +87,33 @@ function insert(node, value){
 }
 
 insert(root,1000)
-// console.log(root)
 
 function find (node, value){
     if (node === null) return null
-
+    
     if(node.value === value){return node}
-
+    
     const left = find(node.left, value);
     const right = find(node.right, value);
-
+    
     return left || right;
 }
 
-let val = find(root, 6)
-console.log(val)
+function invertTree(root){
+    if(root === null) return null;
+    let temp = root.left;
+    root.left = root.right
+    root.right = temp
+
+    return root
+}
+
+// let val = find(root, 6)
+// console.log(val)
 // if(val) console.log(val.value , val.left, val.right);
+
+console.log("Original tree", root);
+
+invertTree(root)
+
+console.log("Inverted tree", root);
